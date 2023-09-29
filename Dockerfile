@@ -1,14 +1,13 @@
-FROM php:7.1-apache
-MAINTAINER Kristoph Junge <kristoph.junge@gmail.com>
+FROM php:8.2-apache
 
 # Utilities
 RUN apt-get update && \
-    apt-get -y install apt-transport-https git curl vim --no-install-recommends && \
+    apt-get -y install apt-transport-https git curl vim wget --no-install-recommends && \
     rm -r /var/lib/apt/lists/*
 
 # SimpleSAMLphp
-ARG SIMPLESAMLPHP_VERSION=1.15.2
-RUN curl -s -L -o /tmp/simplesamlphp.tar.gz https://github.com/simplesamlphp/simplesamlphp/releases/download/v$SIMPLESAMLPHP_VERSION/simplesamlphp-$SIMPLESAMLPHP_VERSION.tar.gz && \
+ARG SIMPLESAMLPHP_VERSION=2.0.6
+RUN wget --no-check-certificate -O /tmp/simplesamlphp.tar.gz https://github.com/simplesamlphp/simplesamlphp/releases/download/v$SIMPLESAMLPHP_VERSION/simplesamlphp-$SIMPLESAMLPHP_VERSION.tar.gz && \
     tar xzf /tmp/simplesamlphp.tar.gz -C /tmp && \
     rm -f /tmp/simplesamlphp.tar.gz  && \
     mv /tmp/simplesamlphp-* /var/www/simplesamlphp && \
