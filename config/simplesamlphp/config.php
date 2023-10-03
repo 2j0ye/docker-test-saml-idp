@@ -125,8 +125,8 @@ $config = [
      * The email address will be used as the recipient address for error reports, and
      * also as the technical contact in generated metadata.
      */
-    //'technicalcontact_name' => 'Administrator',
-    //'technicalcontact_email' => 'na@example.org',
+    'technicalcontact_name' => 'Administrator',
+    'technicalcontact_email' => 'na@example.org',
 
     /*
      * (Optional) The method by which email is delivered.  Defaults to mail which utilizes the
@@ -483,7 +483,6 @@ $config = [
      */
     'database.username' => 'simplesamlphp',
     'database.password' => 'secret',
-    'database.options' => [],
 
     /*
      * (Optional) Table prefix
@@ -493,7 +492,7 @@ $config = [
     /*
      * (Optional) Driver options
      */
-    'database.driver_options' => [],
+    //'database.driver_options' => [],
 
     /*
      * True or false if you would like a persistent database connection
@@ -533,8 +532,7 @@ $config = [
      * In example when you are setting up a federation bridge.
      */
     'enable.saml20-idp' => true,
-    'enable.saml20-sp' => true,
-    'enable.shib13-idp' => false,
+    'enable.shib13-idp' => true,
     'enable.adfs-idp' => false,
     'enable.wsfed-sp' => false,
     'enable.authmemcookie' => false,
@@ -558,9 +556,9 @@ $config = [
 
     'module.enable' => [
         'exampleauth' => true,
-        'core' => true,
+        'core' => null,
         'admin' => true,
-        'saml' => true
+        'saml' => true,
     ],
 
 
@@ -647,7 +645,7 @@ $config = [
      * Example:
      *  'session.cookie.samesite' => 'None',
      */
-    'session.cookie.samesite' => $httpUtils->canSetSameSiteNone() ? 'None' : null,
+    'session.cookie.samesite' => null,
 
     /*
      * Options to override the default settings for php sessions.
@@ -789,7 +787,7 @@ $config = [
      * than one instance is using memcache, you probably want to assign
      * a unique value per instance to this setting to avoid data collision.
      */
-    'memcache_store.prefix' => '',
+    'memcache_store.prefix' => null,
 
     /*
      * This value is the duration data should be stored in memcache. Data
@@ -835,7 +833,7 @@ $config = [
      * Options to override the default settings for the language cookie
      */
     'language.cookie.name' => 'language',
-    'language.cookie.domain' => '',
+    'language.cookie.domain' => null,
     'language.cookie.path' => '/',
     'language.cookie.secure' => true,
     'language.cookie.httponly' => false,
@@ -944,6 +942,8 @@ $config = [
      | DISCOVERY SERVICE |
      *********************/
 
+     'default-wsfed-idp' => 'urn:federation:pingfederate:localhost',
+
     /*
      * Whether the discovery service should allow the user to save his choice of IdP.
      */
@@ -969,6 +969,15 @@ $config = [
      */
     'idpdisco.layout' => 'dropdown',
 
+     /*
+     * Whether SimpleSAMLphp should sign the response or the assertion in SAML 1.1 authentication
+     * responses.
+     *
+     * The default is to sign the assertion element, but that can be overridden by setting this
+     * option to TRUE. It can also be overridden on a pr. SP basis by adding an option with the
+     * same name to the metadata of the SP.
+     */
+    'shib13.signresponse' => true,
 
 
     /*************************************
@@ -1180,7 +1189,6 @@ $config = [
     'metadata.sign.privatekey' => null,
     'metadata.sign.privatekey_pass' => null,
     'metadata.sign.certificate' => null,
-    'metadata.sign.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
 
 
     /****************************
