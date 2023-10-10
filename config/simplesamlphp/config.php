@@ -66,8 +66,8 @@ $config = [
      * When specified as a relative path, this is relative to the SimpleSAMLphp
      * root directory.
      */
-    'loggingdir' => NULL,
-    'datadir' => '/var/simplesamlphp/data/',
+    'loggingdir' => null,
+    'datadir' => 'data/',
     'tempdir' => '/tmp/simplesaml',
 
     /*
@@ -201,7 +201,7 @@ $config = [
      * Set this option to true if you want to require administrator password to access the metadata.
      */
     'admin.protectmetadata' => false,
-
+    'admin.protectindexpage' => false,
     /*
      * Set this option to false if you don't want SimpleSAMLphp to check for new stable releases when
      * visiting the configuration tab in the web interface.
@@ -362,7 +362,7 @@ $config = [
      * must exist and be writable for SimpleSAMLphp. If set to something else, set
      * loggingdir above to 'null'.
      */
-    'logging.level' => SimpleSAML\Logger::ERR,
+    'logging.level' => SimpleSAML\Logger::DEBUG,
     'logging.handler' => 'errorlog',
 
     /*
@@ -556,9 +556,7 @@ $config = [
 
     'module.enable' => [
         'exampleauth' => true,
-        'core' => null,
         'admin' => true,
-        'saml' => true,
     ],
 
 
@@ -1078,7 +1076,7 @@ $config = [
      * This option allows you to specify a directory for your metadata outside of the standard metadata directory
      * included in the standard distribution of the software.
      */
-    'metadatadir' => 'metadata',
+    //'metadatadir' => 'metadata',
 
     /*
      * This option configures the metadata sources. The metadata sources is given as an array with
@@ -1307,5 +1305,6 @@ $config = [
      * processed by the IdP/SP proxy or if it will be passed to the SP behind
      * the IdP/SP proxy.
      */
+    'proxy' => null,
     'proxymode.passAuthnContextClassRef' => false,
 ];
