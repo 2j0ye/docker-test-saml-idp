@@ -557,6 +557,7 @@ $config = [
     'module.enable' => [
         'exampleauth' => true,
         'admin' => true,
+        'statistics' => true,
     ],
 
 
@@ -999,7 +1000,7 @@ $config = [
         30 => 'core:LanguageAdaptor',
 
         45 => [
-            'class'         => 'core:StatisticsWithAttribute',
+            'class'         => 'statistics:StatisticsWithAttribute',
             'attributename' => 'realm',
             'type'          => 'saml20-idp-SSO',
         ],
